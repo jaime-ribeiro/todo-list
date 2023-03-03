@@ -9,26 +9,85 @@
     display: flex;
     height: 3.3749rem;
     margin-top: -1.69rem;
+
 }
 
 
 .addTaskLine input {
     box-sizing: border-box;
     border-radius: 8px;
-    border: 1px solid var(--gray-700);
     margin-right: 0.5rem;
     padding: 1rem;
-    color: var(--gray-300);
     flex: 1;
+    gap: 0.5rem;
+
+    background-color: var(--gray-500);
+    border: 1px solid var(--gray-700);
+    color: var(--gray-300);
+
 }
 
 .addTaskLine button {
-    border-radius: 8px;
-    border: 0;
-    padding: 1rem;
-    background: var(--blue-dark);
-    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 0;
+
+    background: var(--blue-dark);
+    color: var(--white);
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.addTaskLine button:hover {}
+
+.headerTasks {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    margin-top: 4rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.headerTasks span {
+    color: var(--gray-200);
+    background: var(--gray-400);
+    border-radius: 999px;
+
+    font-size: 1rem;
+    padding: 0.125rem 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.createdTasks p {
+    color: var(--blue);
+}
+
+.concludedTasks p {
+    color: var(--purple);
+}
+
+
+.withoutTask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 4rem 1.5rem;
+    border-radius: 8px;
+    border-top: 1px solid var(--gray-400);
+    line-height: 1.4rem;
+}
+
+.withoutTask>img {
+    margin-bottom: 1rem;
+}
+
+.withoutTask>p>span {
+    font-weight: bold;
 }

@@ -3,7 +3,7 @@ import styles from './Task.module.css';
 
 export function Task() {
     return (
-        <div className={styles.withoutTasks}>
+        <div className={styles.Tasks}>
             <header className={styles.headerTasks}>
                 <div className={styles.createdTasks}>
                     <p>Tarefas criadas <span>0</span></p>

@@ -1,18 +1,20 @@
 .headerTasks {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 4rem;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    margin-top: 4rem;
+
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .headerTasks span {
-    font-size: 1rem;
     color: var(--gray-200);
+    background: var(--gray-400);
     border-radius: 999px;
+
+    font-size: 1rem;
     padding: 0.125rem 0.5rem;
-    background: var(--gray-200);
     margin-left: 0.5rem;
 }
 
@@ -25,7 +27,7 @@
 }
 
 
-.withoutTasks>main {
+.Tasks>main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,10 +39,10 @@
     line-height: 1.4rem;
 }
 
-.withoutTasks>main>img {
+.Tasks>main>img {
     margin-bottom: 1rem;
 }
 
-.withoutTasks>main>p>span {
+.Tasks>main>p>span {
     font-weight: bold;
 }
