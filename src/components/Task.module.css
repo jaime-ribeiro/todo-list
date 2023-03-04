@@ -1,48 +1,67 @@
-.headerTasks {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    margin-top: 4rem;
+.toDo {
+    align-items: center;
+    max-width: 46.06rem;
 
-    font-size: 1rem;
-    font-weight: bold;
 }
 
-.headerTasks span {
-    color: var(--gray-200);
-    background: var(--gray-400);
-    border-radius: 999px;
-
-    font-size: 1rem;
-    padding: 0.125rem 0.5rem;
-    margin-left: 0.5rem;
+.toDo+.toDo {
+    margin-top: 0.75rem;
 }
 
-.createdTasks p {
-    color: var(--blue);
-}
-
-.concludedTasks p {
-    color: var(--purple);
-}
-
-
-.Tasks>main {
+.toDo {
+    color: var(--gray-100);
+    background: var(--gray-500);
+    border: 1px solid var(--gray-400);
+    font-size: 0.875rem;
+    line-height: 1.4rem;
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1;
+    list-style-type: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-
-    padding: 4rem 1.5rem;
-    border-radius: 8px;
-    border-top: 1px solid var(--gray-400);
-    line-height: 1.4rem;
 }
 
-.Tasks>main>img {
-    margin-bottom: 1rem;
+.toDo>input[type="radio"] {
+    appearance: none;
+    width: 1.09rem;
+    height: 1.09rem;
+    min-width: 1.09rem;
+    min-height: 1.09rem;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1.5px solid var(--blue);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.Tasks>main>p>span {
-    font-weight: bold;
+.toDo>input[type="radio"]:checked {
+    border: 1.5px solid var(--purple);
+    background-color: var(--purple);
+}
+
+.toDo>input[type="radio"]:checked::after {
+    content: "\2713";
+    font-size: 0.8rem;
+    color: var(--gray-100);
+    border: none;
+    border-radius: 0;
+}
+
+.toDo>span {
+    margin: 0 0.75rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.toDo>button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-300);
 }

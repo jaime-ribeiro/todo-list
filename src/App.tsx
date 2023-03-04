@@ -1,25 +1,38 @@
 import { PlusCircle } from 'phosphor-react';
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './App.module.css';
 import './global.css';
 import { Header } from './components/Header';
 import Clipboard from './assets/clipboard.svg'
 import { Task } from './components/Task';
 
-interface ToDo {
+interface IToDo {
+  id: number;
   name: String;
-  Checked: Boolean;
+  checked: Boolean;
 }
 
 export function App() {
-  const [toDos, setToDos] = useState([""])
-  const [newToDos, setNewToDos] = useState("")
+  const [toDos, setToDos] = useState<IToDo[]>([]);
+  const [newToDoName, setNewToDoName] = useState("")
+
 
   function handleCreateNewToDo(event: FormEvent) {
     event.preventDefault();
 
-    setToDos([...toDos, newToDos]);
-    console.log(toDos);
+    const newToDo = {
+      id: 1,
+      name: newToDoName,
+      checked: false,
+    }
+
+    setToDos([...toDos, newToDo]);
+    setNewToDoName("");
+  }
+
+  function handleNewToDoInputChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('')
+    setNewToDoName(event.target.value);
   }
   return (
     < div >
@@ -32,7 +45,8 @@ export function App() {
           <input
             type="text"
             placeholder="Adicione uma nova tarefa"
-            value={newToDos}
+            onChange={handleNewToDoInputChange}
+            value={newToDoName}
           />
           <button type="submit">
             Criar
@@ -56,7 +70,15 @@ export function App() {
             <p>Crie tarefas e organize seus itens a fazer</p>
           </div>
         </div >
-        {/* <Task /> */}
+        <ul>
+          {toDos.map(toDo => {
+            return (
+              <Task
+                name={toDo.name}
+              />
+            )
+          })}
+        </ul>
       </main>
     </div >
   )
