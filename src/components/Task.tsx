@@ -1,20 +1,18 @@
 import styles from './Task.module.css';
 import { Trash } from 'phosphor-react';
-
-interface IToDo {
-    uuid?: String;
-    name: String;
-    checked?: boolean;
+import { IToDo } from '../App';
+interface IToDoProps {
+    ToDo: IToDo;
 }
 
-export function Task({ name }: IToDo) {
+export function Task({ ToDo }: IToDoProps) {
     return (
         <li className={styles.toDo}>
             <input
                 type="radio"
             />
             <span>
-                {name}
+                {ToDo.name}
             </span>
             <button>
                 <Trash size={20} />

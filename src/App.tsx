@@ -6,7 +6,7 @@ import { Header } from './components/Header';
 import Clipboard from './assets/clipboard.svg'
 import { Task } from './components/Task';
 
-interface IToDo {
+export interface IToDo {
   id: number;
   name: String;
   checked: Boolean;
@@ -14,7 +14,8 @@ interface IToDo {
 
 export function App() {
   const [toDos, setToDos] = useState<IToDo[]>([]);
-  const [newToDoName, setNewToDoName] = useState("")
+  const [newToDoName, setNewToDoName] = useState("");
+  const [toDosLenght, setToDosLength] = useState(0);
 
 
   function handleCreateNewToDo(event: FormEvent) {
@@ -28,6 +29,7 @@ export function App() {
 
     setToDos([...toDos, newToDo]);
     setNewToDoName("");
+    setToDosLength(prevLength => prevLength + 1);
   }
 
   function handleNewToDoInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -56,25 +58,29 @@ export function App() {
         <div className={styles.Tasks}>
           <header className={styles.headerTasks}>
             <div className={styles.createdTasks}>
-              <p>Tarefas criadas <span>0</span></p>
+              <p>Tarefas criadas <span>{toDosLenght}</span></p>
             </div>
             <div className={styles.concludedTasks}>
-              <p>Concluídas <span>0</span></p>
+              <p>Concluídas <span>{toDosLenght === 0 ? 0 : `0 de ${toDosLenght}`}</span></p>
             </div>
           </header>
-          <div className={styles.withoutTask}>
-            <img src={Clipboard}></img>
-            <p>
-              <span>Você ainda não tem tarefas cadastradas</span>
-            </p>
-            <p>Crie tarefas e organize seus itens a fazer</p>
-          </div>
+          {toDosLenght > 0 ? null :
+            (
+              <div className={styles.withoutTask}>
+                <img src={Clipboard}></img>
+                <p>
+                  <span>Você ainda não tem tarefas cadastradas</span>
+                </p>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+              </div>
+            )}
         </div >
         <ul>
           {toDos.map(toDo => {
             return (
               <Task
-                name={toDo.name}
+                key={toDo.id}
+                ToDo={toDo}
               />
             )
           })}
