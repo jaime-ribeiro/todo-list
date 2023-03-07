@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.toDo>input[type="radio"] {
+.toDo>input[type="checkbox"] {
     appearance: none;
     width: 1.09rem;
     height: 1.09rem;
@@ -39,12 +39,15 @@
 
 }
 
-.toDo>input[type="radio"]:checked {
+.toDo>input[type="checkbox"]:checked {
     border: 1.5px solid var(--purple);
     background-color: var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.toDo>input[type="radio"]:checked::after {
+.toDo>input[type="checkbox"]:checked::after {
     content: "\2713";
     font-size: 0.8rem;
     color: var(--gray-100);
@@ -64,4 +67,16 @@
     border: none;
     cursor: pointer;
     color: var(--gray-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toDo .toDoNotChecked {
+    color: var(--gray-100);
+}
+
+.toDo .toDoChecked {
+    color: var(--gray-300);
+    text-decoration: line-through;
 }

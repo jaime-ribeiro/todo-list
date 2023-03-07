@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { PlusCircle } from 'phosphor-react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './App.module.css';
@@ -7,9 +8,9 @@ import Clipboard from './assets/clipboard.svg'
 import { Task } from './components/Task';
 
 export interface IToDo {
-  id: number;
-  name: String;
-  checked: Boolean;
+  id: string;
+  name: string;
+  checked: boolean;
 }
 
 export function App() {
@@ -17,12 +18,11 @@ export function App() {
   const [newToDoName, setNewToDoName] = useState("");
   const [toDosLenght, setToDosLength] = useState(0);
 
-
   function handleCreateNewToDo(event: FormEvent) {
     event.preventDefault();
 
     const newToDo = {
-      id: 1,
+      id: uuidv4(),
       name: newToDoName,
       checked: false,
     }
@@ -36,6 +36,30 @@ export function App() {
     event.target.setCustomValidity('')
     setNewToDoName(event.target.value);
   }
+
+  function onCheckTask(ToDoId: string) {
+    const newToDoList = toDos.map(todo => {
+      if (ToDoId === todo.id) return {
+        ...todo, checked: !todo.checked
+      }
+
+      return todo
+    })
+
+    setToDos(newToDoList);
+  }
+
+  function deleteToDo(toDoToDelete: IToDo) {
+    const toDosWithoutDeleted = toDos.filter(todo => {
+      return todo !== toDoToDelete;
+    })
+
+    setToDos(toDosWithoutDeleted);
+    setToDosLength(prevLength => prevLength - 1);
+  }
+
+  const toDosConcludedCount = toDos.filter(todo => todo.checked).length;
+  //Pelo fato da variável estar associado a um toDos e o seu estado mudar, atualiza todas as variáveis associadas a ela, por isso nesse caso o handle não foi necessário
   return (
     < div >
       <Header />
@@ -61,7 +85,7 @@ export function App() {
               <p>Tarefas criadas <span>{toDosLenght}</span></p>
             </div>
             <div className={styles.concludedTasks}>
-              <p>Concluídas <span>{toDosLenght === 0 ? 0 : `0 de ${toDosLenght}`}</span></p>
+              <p>Concluídas <span>{toDosLenght === 0 ? 0 : `${toDosConcludedCount} de ${toDosLenght}`}</span></p>
             </div>
           </header>
           {toDosLenght > 0 ? null :
@@ -81,6 +105,8 @@ export function App() {
               <Task
                 key={toDo.id}
                 ToDo={toDo}
+                onCheckTask={onCheckTask}
+                onDeleteToDo={deleteToDo}
               />
             )
           })}
@@ -89,5 +115,4 @@ export function App() {
     </div >
   )
 }
-
 
