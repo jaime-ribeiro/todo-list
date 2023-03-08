@@ -1,14 +1,4 @@
 .toDo {
-    align-items: center;
-    max-width: 46.06rem;
-
-}
-
-.toDo+.toDo {
-    margin-top: 0.75rem;
-}
-
-.toDo {
     color: var(--gray-100);
     background: var(--gray-500);
     border: 1px solid var(--gray-400);
@@ -16,11 +6,17 @@
     line-height: 1.4rem;
     padding: 1rem;
     border-radius: 8px;
-    flex: 1;
+    max-width: 46.06rem;
     list-style-type: none;
+    flex: 1;
+
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.toDo+.toDo {
+    margin-top: 0.75rem;
 }
 
 .toDo>input[type="checkbox"] {
@@ -33,10 +29,10 @@
     cursor: pointer;
     border: 1.5px solid var(--blue);
     border-radius: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .toDo>input[type="checkbox"]:checked {
@@ -47,6 +43,10 @@
     justify-content: center;
 }
 
+.toDo>input[type="checkbox"]:checked:hover {
+    background: var(--purple-dark);
+}
+
 .toDo>input[type="checkbox"]:checked::after {
     content: "\2713";
     font-size: 0.8rem;
@@ -55,11 +55,17 @@
     border-radius: 0;
 }
 
+.toDo>input[type="checkbox"]:hover {
+    background: var(--blue-dark);
+}
+
 .toDo>span {
     margin: 0 0.75rem;
     word-wrap: break-word;
     word-break: break-all;
     overflow-wrap: break-word;
+
+
 }
 
 .toDo>button {
@@ -70,6 +76,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.toDo>button :hover {
+    color: var(--danger);
 }
 
 .toDo .toDoNotChecked {

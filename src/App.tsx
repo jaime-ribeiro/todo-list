@@ -36,6 +36,9 @@ export function App() {
     event.target.setCustomValidity('')
     setNewToDoName(event.target.value);
   }
+  function handleNewToDoInvalid(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Campo Obrigatório!')
+  }
 
   function onCheckTask(ToDoId: string) {
     const newToDoList = toDos.map(todo => {
@@ -58,6 +61,7 @@ export function App() {
     setToDosLength(prevLength => prevLength - 1);
   }
 
+  const isNewToDoEmpty = newToDoName.length === 0
   const toDosConcludedCount = toDos.filter(todo => todo.checked).length;
   //Pelo fato da variável estar associado a um toDos e o seu estado mudar, atualiza todas as variáveis associadas a ela, por isso nesse caso o handle não foi necessário
   return (
@@ -69,12 +73,17 @@ export function App() {
           onSubmit={handleCreateNewToDo}
         >
           <input
+            required
             type="text"
             placeholder="Adicione uma nova tarefa"
             onChange={handleNewToDoInputChange}
+            onInvalid={handleNewToDoInvalid}
             value={newToDoName}
           />
-          <button type="submit">
+          <button
+            type="submit"
+            disabled={isNewToDoEmpty}
+          >
             Criar
             <PlusCircle size={24} />
           </button>
